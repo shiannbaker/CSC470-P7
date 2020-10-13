@@ -16,7 +16,7 @@ namespace P5
             form.ShowDialog();
         }
 
-        private void Main_Load(object sender, System.EventArgs e)
+        private void FormMain_Load(object sender, System.EventArgs e)
         {
             this.CenterToScreen();
             // Force the user to login successfully or abort the application

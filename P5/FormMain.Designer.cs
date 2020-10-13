@@ -229,7 +229,7 @@
             this.Margin = new System.Windows.Forms.Padding(6);
             this.Name = "FormMain";
             this.Text = "Main";
-            this.Load += new System.EventHandler(this.Main_Load);
+            this.Load += new System.EventHandler(this.FormMain_Load);
             this.menuStripMain.ResumeLayout(false);
             this.menuStripMain.PerformLayout();
             this.ResumeLayout(false);
