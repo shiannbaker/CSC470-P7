@@ -2,7 +2,7 @@
 
 namespace P5
 {
-    interface IIssueRepository
+    public interface IIssueRepository
     {
         string Add(Issue issue);
         List<Issue> GetAll(int ProjectId);
