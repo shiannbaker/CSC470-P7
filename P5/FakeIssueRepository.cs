@@ -18,9 +18,7 @@ namespace P5
 
         public string Add(Issue issue)
         {
-            Issues.Add(issue);
 
-            return NO_ERROR;
         }
         public List<Issue> GetAll(int ProjectId)
         {
@@ -32,7 +30,25 @@ namespace P5
         }
         public string Modify(Issue issue)
         {
+            string msg = ValidateIssue(issue);
 
+            if (msg.Equals(""))
+            {
+                int index = Issues.FindIndex(x => x.Id == issue.Id);
+                if (index != -1)
+                {
+                    Issues[index] = issue;
+                }
+                else
+                {
+                    // Add to the list anyway?!?
+                }
+                return msg;
+            }
+            else
+            {
+                return msg;
+            }
         }
         public int GetTotalNumberOfIssues(int ProjectId)
         {
