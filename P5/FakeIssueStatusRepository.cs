@@ -4,7 +4,7 @@ namespace P5
 {
     public class FakeIssueStatusRepository : IIssueStatusRepository
     {
-        private static List<IssueStatus> _IssueStatuses;
+        private static List<IssueStatus> IssueStatuses;
 
         public void Add(int Id, string value)
         {
@@ -13,19 +13,19 @@ namespace P5
             newItem.Id = Id;
             newItem.Value = value;
 
-            _IssueStatuses.Add(newItem);
+            IssueStatuses.Add(newItem);
         }
 
         public List<IssueStatus> GetAll()
         {
-            return _IssueStatuses;
+            return IssueStatuses;
         }
 
         public int GetIdByStatus(string value)
         {
-            if (_IssueStatuses.Exists(x => x.Value.Equals(value)))
+            if (IssueStatuses.Exists(x => x.Value.Equals(value)))
             {
-                return _IssueStatuses.Find(x => x.Value.Equals(value)).Id;
+                return IssueStatuses.Find(x => x.Value.Equals(value)).Id;
             }
             else
             {
@@ -36,9 +36,9 @@ namespace P5
 
         public string GetValueById(int Id)
         {
-            if (_IssueStatuses.Exists(x => x.Id.Equals(Id)))
+            if (IssueStatuses.Exists(x => x.Id.Equals(Id)))
             {
-                return _IssueStatuses.Find(x => x.Id.Equals(Id)).Value;
+                return IssueStatuses.Find(x => x.Id.Equals(Id)).Value;
             }
             else
             {
