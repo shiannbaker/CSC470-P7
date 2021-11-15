@@ -88,7 +88,9 @@ namespace P5
 
         private void issuesDashboardToolStripMenuItem_Click(object sender, System.EventArgs e)
         {
-
+            FormDashboard form = new FormDashboard();
+            form.ShowDialog();
+            form.Dispose();
         }
 
         private void issuesRecordToolStripMenuItem_Click(object sender, System.EventArgs e)

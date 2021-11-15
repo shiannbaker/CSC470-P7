@@ -19,14 +19,9 @@ namespace P5
 
         private static List<Issue> _Issues = new List<Issue>();
 
-        public int GetNextId()
+        public int GetDisplayId()
         {
-            int currentMaxId = 0;
-            foreach (Issue i in _Issues)
-            {
-                currentMaxId = i.Id;
-            }
-            return ++currentMaxId;
+            return this.GetNextId();
         }
 
         public string Add(Issue issue)
@@ -40,6 +35,7 @@ namespace P5
                 string msg = ValidateIssue(issue);
                 if (msg.Equals(""))
                 {
+                    issue.ProjectId = GetNextId();
                     _Issues.Add(issue);
                 }
                 return msg;
@@ -96,8 +92,18 @@ namespace P5
             List<Issue> all = GetAll(ProjectId);
             foreach (Issue x in all)
             {
-                // Fill a list with all months used
-                string newString = x.DiscoveryDate.Year.ToString() + " - " + x.DiscoveryDate.Month.ToString();
+                string newString;
+                if (x.DiscoveryDate.Month < 10)
+                {
+                    // Fill a list with all months used
+                    newString = x.DiscoveryDate.Year.ToString() + " - 0" + x.DiscoveryDate.Month.ToString();
+                }
+                else
+                {
+                    // Fill a list with all months used
+                    newString = x.DiscoveryDate.Year.ToString() + " - " + x.DiscoveryDate.Month.ToString();
+                }
+
 
                 if (!months.Exists(y => y.Equals(newString)))
                 {
@@ -179,6 +185,21 @@ namespace P5
         private bool IsDuplicate(string title)
         {
             return _Issues.Exists(x => x.Title.Equals(title));
+        }
+
+        public int GetNextId()
+        {
+            int currentMaxId = 0;
+
+            foreach (Issue x in _Issues)
+            {
+                if (currentMaxId < x.Id)
+                {
+                    currentMaxId = x.Id;
+                }
+            }
+
+            return ++currentMaxId;
         }
     }
 }

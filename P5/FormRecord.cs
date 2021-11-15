@@ -46,7 +46,7 @@ namespace P5
             comboBoxStatus.SelectedIndex = 0;
 
             FakeIssueRepository issueRepo = new FakeIssueRepository();
-            textBoxId.Text = issueRepo.GetNextId().ToString();
+            textBoxId.Text = issueRepo.GetDisplayId().ToString();
         }
 
         private void buttonCancel_Click(object sender, EventArgs e)
@@ -63,7 +63,6 @@ namespace P5
             newIssue.Discoverer = comboBoxDiscoverer.Text;
             newIssue.Component = textBoxComponent.Text;
             newIssue.IssueStatusId = comboBoxStatus.SelectedIndex;
-            newIssue.ProjectId = issueRepo.GetNextId();
 
             string errorMsg = issueRepo.Add(newIssue);
 
