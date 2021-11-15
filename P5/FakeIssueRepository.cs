@@ -14,11 +14,26 @@ namespace P5
         public const string FUTURE_DISCOVERY_DATETIME_ERROR = "Issues can't be from the future.";
         public const string EMPTY_DISCOVERER_ERROR = "A Discoverer is required.";
 
+        // Add an error message for duplicate titles
+        public const string DUPLICATE_TITLE_ERROR = "A unique Title required";
+
         private static List<Issue> Issues;
 
         public string Add(Issue issue)
         {
-
+            if(IsDuplicate(issue.Title))
+            {
+                string msg = ValidateIssue(issue);
+                if (msg.Equals(""))
+                {
+                    Issues.Add(issue);
+                }
+                return msg;
+            }
+            else
+            {
+                return DUPLICATE_TITLE_ERROR;
+            }
         }
         public List<Issue> GetAll(int ProjectId)
         {
@@ -30,24 +45,30 @@ namespace P5
         }
         public string Modify(Issue issue)
         {
-            string msg = ValidateIssue(issue);
-
-            if (msg.Equals(""))
+            if (IsDuplicate(issue.Title))
             {
-                int index = Issues.FindIndex(x => x.Id == issue.Id);
-                if (index != -1)
+                string msg = ValidateIssue(issue);
+                if (msg.Equals(""))
                 {
-                    Issues[index] = issue;
+                    int index = Issues.FindIndex(x => x.Id == issue.Id);
+                    if (index != -1)
+                    {
+                        Issues[index] = issue;
+                        return msg;
+                    }
+                    else
+                    {
+                        return "This Issue Id doesn't exist yet.";
+                    }
                 }
                 else
                 {
-                    // Add to the list anyway?!?
+                    return msg;
                 }
-                return msg;
             }
             else
             {
-                return msg;
+                return DUPLICATE_TITLE_ERROR;
             }
         }
         public int GetTotalNumberOfIssues(int ProjectId)
@@ -57,10 +78,65 @@ namespace P5
         }
         public List<string> GetIssuesByMonth(int ProjectId)
         {
+            List<string> months = new List<string>();
+            List<int> counts = new List<int>();
+
+            List<string> list = new List<string>();
+
+            List<Issue> all = GetAll(ProjectId);
+            foreach (Issue x in all)
+            {
+                // Fill a list with all months used
+                string newString = x.DiscoveryDate.Year.ToString() + " - " + x.DiscoveryDate.Month.ToString();
+
+                if (!months.Exists(y => y.Equals(newString)))
+                {
+                    months.Add(newString);
+                    counts.Add(0);
+                }
+
+                ++counts[months.IndexOf(newString)];
+            }
+
+            foreach (string y in months)
+            {
+                list.Add(y + ": " + counts[months.IndexOf(y)]);
+            }
+
+            list.Sort();
+
+            return list;
         }
         public List<string> GetIssuesByDiscoverer(int ProjectId)
         {
+            List<string> discoverers = new List<string>();
+            List<int> counts = new List<int>();
 
+            List<string> list = new List<string>();
+
+            List<Issue> all = GetAll(ProjectId);
+            foreach (Issue x in all)
+            {
+                // Fill a list with all months used
+                string newString = x.Discoverer;
+
+                if (!discoverers.Exists(y => y.Equals(newString)))
+                {
+                    discoverers.Add(newString);
+                    counts.Add(0);
+                }
+
+                ++counts[discoverers.IndexOf(newString)];
+            }
+
+            foreach (string y in discoverers)
+            {
+                list.Add(y + ": " + counts[discoverers.IndexOf(y)]);
+            }
+
+            list.Sort();
+
+            return list;
         }
         public Issue GetIssueById(int Id)
         {
