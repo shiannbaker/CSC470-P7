@@ -17,43 +17,57 @@ namespace P5
         // Add an error message for duplicate titles
         public const string DUPLICATE_TITLE_ERROR = "A unique Title required";
 
-        private static List<Issue> Issues;
+        private static List<Issue> _Issues = new List<Issue>();
+
+        public int GetNextId()
+        {
+            int currentMaxId = 0;
+            foreach (Issue i in _Issues)
+            {
+                currentMaxId = i.Id;
+            }
+            return ++currentMaxId;
+        }
 
         public string Add(Issue issue)
         {
             if(IsDuplicate(issue.Title))
             {
-                string msg = ValidateIssue(issue);
-                if (msg.Equals(""))
-                {
-                    Issues.Add(issue);
-                }
-                return msg;
+                return DUPLICATE_TITLE_ERROR;
             }
             else
             {
-                return DUPLICATE_TITLE_ERROR;
+                string msg = ValidateIssue(issue);
+                if (msg.Equals(""))
+                {
+                    _Issues.Add(issue);
+                }
+                return msg;
             }
         }
         public List<Issue> GetAll(int ProjectId)
         {
-            return Issues.Where(x => x.ProjectId == ProjectId).ToList();
+            return _Issues.Where(x => x.ProjectId == ProjectId).ToList();
         }
         public bool Remove(Issue issue)
         {
-            return Issues.Remove(issue);
+            return _Issues.Remove(issue);
         }
         public string Modify(Issue issue)
         {
             if (IsDuplicate(issue.Title))
             {
+                return DUPLICATE_TITLE_ERROR;
+            }
+            else
+            {
                 string msg = ValidateIssue(issue);
                 if (msg.Equals(""))
                 {
-                    int index = Issues.FindIndex(x => x.Id == issue.Id);
+                    int index = _Issues.FindIndex(x => x.Id == issue.Id);
                     if (index != -1)
                     {
-                        Issues[index] = issue;
+                        _Issues[index] = issue;
                         return msg;
                     }
                     else
@@ -65,10 +79,6 @@ namespace P5
                 {
                     return msg;
                 }
-            }
-            else
-            {
-                return DUPLICATE_TITLE_ERROR;
             }
         }
         public int GetTotalNumberOfIssues(int ProjectId)
@@ -140,7 +150,7 @@ namespace P5
         }
         public Issue GetIssueById(int Id)
         {
-            return Issues.Find(x => x.Id == Id);
+            return _Issues.Find(x => x.Id == Id);
         }
         
         private string ValidateIssue(Issue issue)
@@ -168,7 +178,7 @@ namespace P5
         }
         private bool IsDuplicate(string title)
         {
-            return Issues.Exists(x => x.Title.Equals(title));
+            return _Issues.Exists(x => x.Title.Equals(title));
         }
     }
 }

@@ -6,6 +6,41 @@ namespace P5
     {
         private static List<IssueStatus> IssueStatuses;
 
+        public FakeIssueStatusRepository()
+        {
+            IssueStatuses = new List<IssueStatus>();
+            IssueStatuses.Add(new IssueStatus
+            {
+                Id = 0,
+                Value = "Open"
+            });
+            IssueStatuses.Add(new IssueStatus
+            {
+                Id = 1,
+                Value = "Assigned"
+            });
+            IssueStatuses.Add(new IssueStatus
+            {
+                Id = 2,
+                Value = "Fixed"
+            });
+            IssueStatuses.Add(new IssueStatus
+            {
+                Id = 3,
+                Value = "Closed - Won't fix"
+            });
+            IssueStatuses.Add(new IssueStatus
+            {
+                Id = 4,
+                Value = "Closed - Fixed"
+            });
+            IssueStatuses.Add(new IssueStatus
+            {
+                Id = 5,
+                Value = "Closed - by design"
+            });
+        }
+
         public void Add(int Id, string value)
         {
             // Create a new list status and add it to the list
