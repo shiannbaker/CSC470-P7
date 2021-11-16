@@ -19,9 +19,9 @@ namespace P5
 
         private static List<Issue> _Issues = new List<Issue>();
 
-        public int GetDisplayId()
+        public int GetId()
         {
-            return this.GetNextId();
+            return GetNextId();
         }
 
         public string Add(Issue issue)
@@ -35,7 +35,7 @@ namespace P5
                 string msg = ValidateIssue(issue);
                 if (msg.Equals(""))
                 {
-                    issue.ProjectId = GetNextId();
+                    issue.Id = GetNextId();
                     _Issues.Add(issue);
                 }
                 return msg;
@@ -43,7 +43,15 @@ namespace P5
         }
         public List<Issue> GetAll(int ProjectId)
         {
-            return _Issues.Where(x => x.ProjectId == ProjectId).ToList();
+            List<Issue> newList = new List<Issue>(_Issues);
+            foreach (Issue i in newList)
+            {
+                if (i.ProjectId == ProjectId)
+                {
+                    newList.Remove(i);
+                }
+            }
+            return newList;
         }
         public bool Remove(Issue issue)
         {
@@ -156,7 +164,8 @@ namespace P5
         }
         public Issue GetIssueById(int Id)
         {
-            return _Issues.Find(x => x.Id == Id);
+            List<Issue> newList = new List<Issue>(_Issues);
+            return newList.Find(x => x.Id == Id);
         }
         
         private string ValidateIssue(Issue issue)
@@ -187,11 +196,13 @@ namespace P5
             return _Issues.Exists(x => x.Title.Equals(title));
         }
 
-        public int GetNextId()
+        private int GetNextId()
         {
             int currentMaxId = 0;
 
-            foreach (Issue x in _Issues)
+            List<Issue> testList = new List<Issue>(_Issues);
+
+            foreach (Issue x in testList)
             {
                 if (currentMaxId < x.Id)
                 {
