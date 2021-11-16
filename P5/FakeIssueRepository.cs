@@ -43,14 +43,9 @@ namespace P5
         }
         public List<Issue> GetAll(int ProjectId)
         {
-            List<Issue> newList = new List<Issue>(_Issues);
-            foreach (Issue i in newList)
-            {
-                if (i.ProjectId == ProjectId)
-                {
-                    newList.Remove(i);
-                }
-            }
+            List<Issue> newList = _Issues.ToList();
+            int num = newList.RemoveAll(x => x.ProjectId != ProjectId);
+            Console.WriteLine(num);
             return newList;
         }
         public bool Remove(Issue issue)

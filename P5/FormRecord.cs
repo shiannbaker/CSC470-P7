@@ -63,6 +63,12 @@ namespace P5
             newIssue.Discoverer = comboBoxDiscoverer.Text;
             newIssue.Component = textBoxComponent.Text;
             newIssue.IssueStatusId = comboBoxStatus.SelectedIndex;
+
+            FakeProjectRepository projectRepo = new FakeProjectRepository();
+            // Get the text of the FormMain to use to lookup the projectId from the name of the current project
+            Project project = projectRepo.GetAll().Find(x => x.Name.Equals(Application.OpenForms[0].Text.Remove(0, 7)));
+
+            newIssue.ProjectId = project.Id;
             newIssue.Id = 0;
 
             string errorMsg = issueRepo.Add(newIssue);
