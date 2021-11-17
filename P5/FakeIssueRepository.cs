@@ -48,6 +48,7 @@ namespace P5
             Console.WriteLine(num);
             return newList;
         }
+
         public bool Remove(Issue issue)
         {
             return _Issues.Remove(issue);
@@ -188,7 +189,8 @@ namespace P5
         }
         private bool IsDuplicate(string title)
         {
-            return _Issues.Exists(x => x.Title.Equals(title));
+            //return _Issues.Exists(x => x.Title.Equals(title));
+            return false;
         }
 
         private int GetNextId()

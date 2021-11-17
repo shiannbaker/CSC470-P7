@@ -16,7 +16,7 @@ namespace P5
         private void RemoveProject_Load(object sender, EventArgs e)
         {
             CenterToScreen();
-            FormSelectProject form = new FormSelectProject();
+            FormSelectProject form = new FormSelectProject(); //just change the form
             form.ShowDialog();
             if (form.DialogResult != DialogResult.OK)
             {

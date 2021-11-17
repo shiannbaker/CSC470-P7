@@ -77,6 +77,12 @@
     <Compile Include="FormRecord.Designer.cs">
       <DependentUpon>FormRecord.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormRemoveIssue.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormRemoveIssue.Designer.cs">
+      <DependentUpon>FormRemoveIssue.cs</DependentUpon>
+    </Compile>
     <Compile Include="IAppUserRepository.cs" />
     <Compile Include="IIssueRepository.cs" />
     <Compile Include="IIssueStatusRepository.cs" />
@@ -101,6 +107,18 @@
       <DependentUpon>FormModifyProject.cs</DependentUpon>
     </Compile>
     <Compile Include="Issue.cs" />
+    <Compile Include="IssueModify.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="IssueModify.Designer.cs">
+      <DependentUpon>IssueModify.cs</DependentUpon>
+    </Compile>
+    <Compile Include="IssueSelect.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="IssueSelect.Designer.cs">
+      <DependentUpon>IssueSelect.cs</DependentUpon>
+    </Compile>
     <Compile Include="IssueStatus.cs" />
     <Compile Include="Preference.cs" />
     <Compile Include="FormCreateProject.cs">
@@ -142,11 +160,20 @@
     <EmbeddedResource Include="FormRecord.resx">
       <DependentUpon>FormRecord.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormRemoveIssue.resx">
+      <DependentUpon>FormRemoveIssue.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormRemoveProject.resx">
       <DependentUpon>FormRemoveProject.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormSelectProject.resx">
       <DependentUpon>FormSelectProject.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="IssueModify.resx">
+      <DependentUpon>IssueModify.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="IssueSelect.resx">
+      <DependentUpon>IssueSelect.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
