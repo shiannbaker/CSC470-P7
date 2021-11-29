@@ -6,6 +6,8 @@ namespace P5
     {
         private AppUser _CurrentAppUser = new AppUser();
         public static int selectedID;
+        public int ProjectID;
+        private static bool _modify;
         public FormMain()
         {
             InitializeComponent();
@@ -129,6 +131,41 @@ namespace P5
             FormRemoveIssue form = new FormRemoveIssue();
             form.ShowDialog();
             form.Dispose();
+        }
+
+        private void createToolStripMenuItem_Click(object sender, System.EventArgs e)
+        {
+            ProjectID = selectedID;
+            CreateFeature createFeature = new CreateFeature();
+            createFeature.Show();
+            //createFeature.Dispose();
+        }
+
+        private void modifyToolStripMenuItem_Click(object sender, System.EventArgs e)
+        {
+            _modify = true;
+            ProjectID = selectedID;
+            SelectFeature selectF = new SelectFeature();
+            selectF.Show();
+        }
+
+        private void removeToolStripMenuItem_Click(object sender, System.EventArgs e)
+        {
+            _modify = false;
+            ProjectID = selectedID;
+            SelectFeature selectF = new SelectFeature();
+            selectF.Show();
+        }
+        public bool Modify()
+        {
+            if (_modify == true)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }

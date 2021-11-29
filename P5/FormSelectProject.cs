@@ -7,6 +7,7 @@ namespace P5
     {
         public int _SelectedProjectId = -1;
         public string _SelectedProjectName = "";
+        public static int currentProject = -1;
         FakeProjectRepository _ProjectRepository = new FakeProjectRepository();
 
         public FormSelectProject()
@@ -44,15 +45,26 @@ namespace P5
                 string selectedProject = listBoxProjects.SelectedItem.ToString();
                 _SelectedProjectId = Int32.Parse(selectedProject.Substring(0, selectedProject.IndexOf(" ")));
                 _SelectedProjectName = selectedProject.Substring(selectedProject.IndexOf("-") + 2);
+                currentProject = _SelectedProjectId;
                 this.DialogResult = DialogResult.OK;
                 this.Close();
             }
+        }
+
+        public int currentPID()
+        {
+            return currentProject;
         }
 
         private void buttonCancel_Click(object sender, EventArgs e)
         {
             this.DialogResult = DialogResult.Cancel;
             this.Close();
+        }
+
+        private void listBoxProjects_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

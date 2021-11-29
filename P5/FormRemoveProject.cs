@@ -53,5 +53,10 @@ namespace P5
                 Close();
             }
         }
+
+        private void labelProjectName_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
