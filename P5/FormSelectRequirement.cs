@@ -54,7 +54,7 @@ namespace P5
                 List<Requirement> reqs = repo.GetAll(FormMain.selectedID);
                 foreach (Requirement X in reqs)
                 {
-                    Console.WriteLine(X.FeatureId);
+                    //Console.WriteLine(X.FeatureId);
                     if (X.FeatureId == featureRepo.GetFeatureByTitle(FormMain.selectedID, featureComboBox.SelectedItem.ToString()).Id)
                     {
                         dataGridViewRequirements.Rows.Add(X.Id, X.Statement);
