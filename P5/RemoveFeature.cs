@@ -56,21 +56,36 @@ namespace P5
             Feature feature = new Feature();
             feature = f.GetFeatureById(projectId, featureId);
 
-            string _remove;
-            _remove = f.Remove(feature);
-
-            if(_remove == "true")
+            // If and only If requirements
+            FakeRequirementRepository requirements = new FakeRequirementRepository();
+            if (requirements.CountByFeatureId(featureId) > 0)
             {
-                this.Close();
-            }
-            else
-            {
-                FormMain rem_f = new FormMain();
-                rem_f.Text = "Error Removing.";
-                rem_f.ShowDialog();
-            }
+                DialogResult result = MessageBox.Show("There are one or more requirements assosociated with this feature. " +
+                    "These requirements will be destroyed if you remove this feature. " +
+                    "Are you sure you want to remove: " + feature.Title + "?", "Confirmation", MessageBoxButtons.YesNo);
 
-            //ADD IF AND ONLY IF requirements associated with feature
+                if (result == DialogResult.Yes)
+                {
+                    string _remove;
+                    _remove = f.Remove(feature);
+
+                    if (_remove == "")
+                    {
+                        this.Close();
+                    }
+                    else
+                    {
+                        MessageBox.Show(_remove, "Error Removing.")
+                        //FormMain rem_f = new FormMain();
+                        //rem_f.Text = "Error Removing.";
+                        //rem_f.ShowDialog();
+                    }
+                }
+                else
+                {
+
+                }
+            }
         }
     }
 }

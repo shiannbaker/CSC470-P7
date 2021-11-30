@@ -70,8 +70,15 @@ namespace P5
         }
         public string Remove(Feature _feature)
         {
-            features.Remove(_feature);
-            return features.Remove(_feature).ToString();
+            if (features.Contains(_feature))
+            {
+                features.Remove(_feature);
+                return NO_ERROR;
+            }
+            else
+            {
+                return NOT_FOUND_ERROR;
+            }
         }
         public string Modify(Feature _feature)
         {

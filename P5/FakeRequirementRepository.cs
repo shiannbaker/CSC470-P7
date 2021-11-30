@@ -34,16 +34,18 @@ namespace P5
         }
         public Requirement GetRequirementById(int requirementId)
         {
-            Requirement requirement = new Requirement();
-            return requirement;
+            List<Requirement> newList = new List<Requirement>(requirements);
+            Requirement req = newList.Find(x => x.Id == requirementId);
+            return req;
         }
         public int CountByFeatureId(int featureId)
         {
-            return -1;
+            List<Requirement> newList = new List<Requirement>(requirements);
+            return newList.FindAll(x => x.FeatureId == featureId).Count();
         }
         public void RemoveByFeatureId(int featureId)
         {
-
+            requirements.RemoveAll(x => x.FeatureId == featureId);
         }
     }
 }
