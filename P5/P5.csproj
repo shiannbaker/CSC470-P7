@@ -74,11 +74,23 @@
     <Compile Include="FakeProjectRepository.cs" />
     <Compile Include="FakeRequirementRepository.cs" />
     <Compile Include="Feature.cs" />
+    <Compile Include="FormCreateRequirement.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormCreateRequirement.Designer.cs">
+      <DependentUpon>FormCreateRequirement.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormDashboard.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormDashboard.Designer.cs">
       <DependentUpon>FormDashboard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormModifyRequirements.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormModifyRequirements.Designer.cs">
+      <DependentUpon>FormModifyRequirements.cs</DependentUpon>
     </Compile>
     <Compile Include="FormRecord.cs">
       <SubType>Form</SubType>
@@ -91,6 +103,12 @@
     </Compile>
     <Compile Include="FormRemoveIssue.Designer.cs">
       <DependentUpon>FormRemoveIssue.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormSelectRequirement.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormSelectRequirement.Designer.cs">
+      <DependentUpon>FormSelectRequirement.cs</DependentUpon>
     </Compile>
     <Compile Include="IAppUserRepository.cs" />
     <Compile Include="IFeatureRepository.cs" />
@@ -175,6 +193,9 @@
     <EmbeddedResource Include="CreateFeature.resx">
       <DependentUpon>CreateFeature.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormCreateRequirement.resx">
+      <DependentUpon>FormCreateRequirement.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormDashboard.resx">
       <DependentUpon>FormDashboard.cs</DependentUpon>
     </EmbeddedResource>
@@ -190,6 +211,9 @@
     <EmbeddedResource Include="FormModifyProject.resx">
       <DependentUpon>FormModifyProject.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormModifyRequirements.resx">
+      <DependentUpon>FormModifyRequirements.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormRecord.resx">
       <DependentUpon>FormRecord.cs</DependentUpon>
     </EmbeddedResource>
@@ -201,6 +225,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormSelectProject.resx">
       <DependentUpon>FormSelectProject.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSelectRequirement.resx">
+      <DependentUpon>FormSelectRequirement.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="IssueModify.resx">
       <DependentUpon>IssueModify.cs</DependentUpon>

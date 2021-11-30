@@ -75,7 +75,7 @@ namespace P5
                     }
                     else
                     {
-                        MessageBox.Show(_remove, "Error Removing.")
+                        MessageBox.Show(_remove, "Error Removing.");
                         //FormMain rem_f = new FormMain();
                         //rem_f.Text = "Error Removing.";
                         //rem_f.ShowDialog();

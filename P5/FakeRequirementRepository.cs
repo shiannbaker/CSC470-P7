@@ -18,7 +18,22 @@ namespace P5
 
         public string Add(Requirement requirement)
         {
-            return "annyeong";
+            if (requirement.Statement.Equals(""))
+            {
+                return EMPTY_STATEMENT_ERROR;
+            }
+            foreach(Requirement r in requirements)
+            {
+                if (r.Statement.Equals(requirement.Statement))
+                {
+                    return DUPLICATE_STATEMENT_ERROR;
+                }
+            }
+
+            requirement.Id = GetNextId();
+            requirements.Add(requirement);
+
+            return NO_ERROR;
         }
         public List<Requirement> GetAll(int ProjectId)
         {
@@ -26,7 +41,15 @@ namespace P5
         }
         public string Remove(Requirement requirement)
         {
-            return "bye";
+            if (requirements.Contains(requirement))
+            {
+                requirements.Remove(requirement);
+                return NO_ERROR;
+            }
+            else
+            {
+                return REQUIREMENT_NOT_FOUND_ERROR;
+            }
         }
         public string Modify(Requirement requirement)
         {
@@ -46,6 +69,16 @@ namespace P5
         public void RemoveByFeatureId(int featureId)
         {
             requirements.RemoveAll(x => x.FeatureId == featureId);
+        }
+
+        private int GetNextId()
+        {
+            int currentMaxId = 0;
+            foreach (Requirement r in requirements)
+            {
+                currentMaxId = r.Id;
+            }
+            return ++currentMaxId;
         }
     }
 }

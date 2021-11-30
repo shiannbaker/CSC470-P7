@@ -167,5 +167,35 @@ namespace P5
                 return false;
             }
         }
+
+        private void createToolStripMenuItem1_Click(object sender, System.EventArgs e)
+        {
+            FormCreateRequirement newForm = new FormCreateRequirement();
+            newForm.ShowDialog();
+            newForm.Dispose();
+        }
+
+        private void modifyToolStripMenuItem1_Click(object sender, System.EventArgs e)
+        {
+            FormSelectRequirement newFormA = new FormSelectRequirement();
+            newFormA.ShowDialog();
+            
+        }
+
+        private void removeToolStripMenuItem1_Click(object sender, System.EventArgs e)
+        {
+            FormSelectRequirement newForm = new FormSelectRequirement();
+            newForm.ShowDialog();
+
+            FakeRequirementRepository repo = new FakeRequirementRepository();
+            Requirement requirement = repo.GetRequirementById(FormSelectRequirement._requirementId);
+
+            DialogResult _Return = MessageBox.Show("Are you sure you want to remove: " + requirement.Statement, "Confirmation", MessageBoxButtons.YesNo);
+
+            if (_Return == DialogResult.Yes)
+            {
+                repo.Remove(requirement);
+            }
+        }
     }
 }

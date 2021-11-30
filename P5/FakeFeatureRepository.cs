@@ -94,8 +94,11 @@ namespace P5
         }
         public Feature GetFeatureByTitle(int projectId, string title)
         {
-            Feature feature = new Feature();
-            return feature;
+            FakeFeatureRepository fakefeatures = new FakeFeatureRepository();
+            List<Feature> listF = new List<Feature>();
+            listF = fakefeatures.GetAll(projectId);
+
+            return listF.Find(x => x.Title.Equals(title));
         }
     }
 }
