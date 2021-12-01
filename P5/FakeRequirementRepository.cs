@@ -29,6 +29,14 @@ namespace P5
                     return DUPLICATE_STATEMENT_ERROR;
                 }
             }
+            if (requirement.FeatureId < 0)
+            {
+                return MISSING_FEATUREID_ERROR;
+            }
+            if (requirement.ProjectId < 0)
+            {
+                return MISSING_PROJECTID_ERROR;
+            }
 
             requirement.Id = GetNextId();
             requirements.Add(requirement);
@@ -53,7 +61,32 @@ namespace P5
         }
         public string Modify(Requirement requirement)
         {
-            return "hi";
+            if (requirement.Statement.Equals(""))
+            {
+                return EMPTY_STATEMENT_ERROR;
+            }
+            foreach (Requirement r in requirements)
+            {
+                if (r.Statement.Equals(requirement.Statement) && r.Id != requirement.Id)
+                {
+                    return DUPLICATE_STATEMENT_ERROR;
+                }
+            }
+            if (requirement.FeatureId < 0)
+            {
+                return MISSING_FEATUREID_ERROR;
+            }
+            if (requirement.ProjectId < 0)
+            {
+                return MISSING_PROJECTID_ERROR;
+            }
+
+
+            // remove the old from the list
+            requirements.RemoveAll(x => x.Id == requirement.Id);
+            // Add the new "modified" version
+            requirements.Add(requirement);
+            return NO_ERROR;
         }
         public Requirement GetRequirementById(int requirementId)
         {

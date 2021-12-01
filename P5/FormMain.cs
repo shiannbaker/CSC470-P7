@@ -179,6 +179,10 @@ namespace P5
         {
             FormSelectRequirement newFormA = new FormSelectRequirement();
             newFormA.ShowDialog();
+            FormModifyRequirement newFormB = new FormModifyRequirement();
+            newFormB.ShowDialog();
+            newFormA.Dispose();
+            newFormB.Dispose();
             
         }
 
